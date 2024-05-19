@@ -2,7 +2,7 @@
   "name": "campers-rental",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://filip-povidernyi.github.io/campers-rental/",
+  "homepage": "https://filip-povidernyi.github.io/Camper/",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
     "@testing-library/jest-dom": "^5.16.3",
