@@ -4,8 +4,8 @@ const CamperCardList = ({ data }) => {
 
     return (
         <ul className="list">
-            {data.map(item => (
-                <CamperCard className='item' key={item._id} data={item} />))}
+            {data.map(vehicle => (
+                <CamperCard className='item' key={vehicle._id} data={vehicle} />))}
         </ul>
     )
 }

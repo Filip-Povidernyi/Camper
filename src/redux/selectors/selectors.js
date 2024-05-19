@@ -4,6 +4,7 @@ export const selectVehicles = state => state.vehicle.vehicles;
 export const selectLoading = state => state.vehicle.loading;
 export const selectError = state => state.vehicle.error;
 export const selectFilters = state => state.vehicle.filters;
+export const selectFavorite = state => state.favorite.favorites;
 
 export const filterVehicles = createSelector(
     [selectVehicles, selectFilters],
