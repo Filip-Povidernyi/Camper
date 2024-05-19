@@ -1,7 +1,14 @@
+import CamperCardList from "components/CamperCardsList/CamperCardsList";
+import { useSelector } from "react-redux";
+import { selectFavorite } from "../../redux/selectors/selectors";
+
 const Favorites = () => {
+
+    const favorites = useSelector(selectFavorite);
+
     return (
         <div>
-            <h1>Favorites</h1>
+            {favorites && <CamperCardList data={favorites} />}
         </div>
     )
 }

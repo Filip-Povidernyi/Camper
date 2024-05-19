@@ -4,6 +4,7 @@ import { Loader } from "components/Loader/Loader";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectError, selectLoading, selectVehicles } from "../../redux/selectors/selectors";
+import FilterForm from "components/FilterForm/FilterForm";
 
 const Catalog = () => {
 
@@ -29,8 +30,11 @@ const Catalog = () => {
 
     return (
     <>
-            {loading && <Loader />}
-            { error && <div>Something went wrong...</div>}
+        {loading && <Loader />}
+        {error && <div>Something went wrong...</div>}
+        <div>
+            <FilterForm />
+        </div>
         <div>
             <CamperCardList data={vehicles.slice(0, visibleCount)} />
             {isLoadMoreVisible && (

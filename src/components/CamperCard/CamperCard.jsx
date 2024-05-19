@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import hartIcon from '../../images/hart.png';
 import adultsIcon from '../../images/users.png';
 import transmissionIcon from '../../images/transmission.png';
@@ -7,11 +6,32 @@ import kitchenIcon from '../../images/kitchen.png';
 import bedsIcon from '../../images/beds.png';
 import acIcon from '../../images/ac.png';
 import star from '../../images/star.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFavorite } from '../../redux/selectors/selectors';
+import { useEffect, useState } from 'react';
+import { addFavorite, deleteFavorite } from '../../redux/slices/favoriteSlice';
+
 
 const CamperCard = ({ data }) => {
 
-    // const [favorite, setFavorite] = useState(false)
-    const {_id, gallery, rating, reviews, location, name, price, description, adults, transmission, engine, details} = data
+    const dispatch = useDispatch();
+
+    const favoriteId = useSelector(selectFavorite);
+    const { _id, gallery, rating, reviews, location, name, price, description, adults, transmission, engine, details } = data;
+
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    useEffect(() => {
+        if (favoriteId?.some(vehicle => vehicle._id === _id)) {
+            setIsFavorite(true);
+        } else { setIsFavorite(false) }
+    }, [favoriteId, _id]);
+
+    const onClickHeart = () => {
+        isFavorite ? dispatch(deleteFavorite(_id)) : dispatch(addFavorite(data));
+
+        console.log('clicked')
+    }
     
     return (
         <li className="card" id={_id}>
@@ -20,7 +40,7 @@ const CamperCard = ({ data }) => {
                 <div className="Name">
                     <h3>{name}</h3>
                     <h3>&#8364;{price}.00</h3>
-                    <button className="favoriteBtn">
+                    <button className="favoriteBtn" onClick={onClickHeart}>
                         <img src={hartIcon} className="hart" alt='Hart'/>
                     </button>
                 </div>
@@ -58,7 +78,7 @@ const CamperCard = ({ data }) => {
                         </li>}
                     </ul>
                     <div>
-                        <button className='details' onClick={()=> {console.log('Hello')}}>Show more</button>
+                        <button className='details' onClick={()=> console.log('gallery', data.gallery) }>Show more</button>
                     </div>
                 </div>
             </div>
