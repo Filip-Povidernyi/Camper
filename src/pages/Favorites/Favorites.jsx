@@ -8,6 +8,7 @@ const Favorites = () => {
 
     return (
         <div>
+            {!favorites && <h1>No favorites campers</h1> }
             {favorites && <CamperCardList data={favorites} />}
         </div>
     )
