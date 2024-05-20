@@ -4,15 +4,26 @@ import { nanoid } from 'nanoid';
 import FuturesDetails from 'components/FuturesDetails/FuturesDetails';
 import VehicleCharac from 'components/VehicleCharac/VehicleCharac';
 import ModalForm from 'components/ModalForm/ModalForm';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const Modal = ({ data, isOpen, onClose }) => {
 
     const { gallery, rating, reviews, location, name, price, description, adults, transmission, engine, details } = data;
 
-    const [visible, setVisible]
+    const [visible, setVisible] = useState(true);
+    const [revVisible, setRevVisible] = useState(false);
+
+    const handleClickFuture = () => {
+        setVisible(true);
+        setRevVisible(false);
+    }
     
+    const handleClickRev = () => {
+        setVisible(false);
+        setRevVisible(true);
+    }
+
     useEffect(() => {
     
         document.body.style.overflow = 'hidden';
@@ -69,23 +80,49 @@ const Modal = ({ data, isOpen, onClose }) => {
 		        	<div className={styleModal.navigation}>
 				        <button
 					        className={styleModal.btn}
-					        type="button">
-					        Features
+                            type="button"
+                            onClick={handleClickFuture}>
+                            Features
 				        </button>
 				        <button
 					        className={styleModal.btn}
-					        type="button">
-					        Reviews
+                            type="button"
+                            onClick={handleClickRev}>
+                            Reviews
 				        </button>
 			        </div>
 			        <hr className={styleModal.divider} />
                 </div>
                 <div className={styleModal.base}>
-                    <div>
+                    <div className={visible? '' : styleModal.noVisible}>
                         <FuturesDetails adults={adults} transmission={transmission} engine={engine} details={details} />
                         <VehicleCharac form={data.form} length={data.length} width={data.width} height={data.height} tank={data.tank} consumption={data.consumption} />
                     </div>
-                    <div className={styleModal.form}>
+                    <div className={revVisible? '' : styleModal.noVisible}>
+                        <div>
+                            {reviews.map(review => {
+                                return (
+                                    <ul>
+                                        <li key={nanoid()}>
+                                            <h4>{review.reviewer_name}</h4>
+                                        </li>
+                                        <li key={nanoid()}>
+                                            <div className={styleModal.revRating}>
+                                                <p>{review.reviewer_rating}</p>
+                                                <svg width="16" height="16">
+                                                    <use href={`${icons}#icon-star`}></use>
+                                                </svg>
+                                            </div>
+                                        </li>
+                                        <li key={nanoid()}>
+                                            <p className={styleModal.commit}>{review.comment}</p>
+                                        </li>
+                                    </ul>
+                                )
+                            })}
+                        </div>
+                    </div>
+                    <div className={styleModal.form} >
                         <ModalForm />
                     </div>
                 </div>

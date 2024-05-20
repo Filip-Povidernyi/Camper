@@ -128,3 +128,18 @@
     border: 1px solid #10182833;
     border-radius: 10px;
 }
+
+.noVisible {
+    display: none;
+}
+
+.revRating {
+    display: flex;
+    gap: 4px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.commit {
+    margin-bottom: 24px;
+}
