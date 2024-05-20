@@ -60,7 +60,7 @@ const type = [
 				<div>
                     <h3 className={styleFilter.title}>Filters</h3>
                     <div>
-			            <h4 className={styleFilter.titleEq}>"Vehicle equipment"</h4>
+			            <h4 className={styleFilter.titleEq}>Vehicle equipment</h4>
 			            <hr className={styleFilter.divider} />
                     </div>
                     <div className={styleFilter.fieldset}>
