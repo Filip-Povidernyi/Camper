@@ -1,0 +1,140 @@
+.card {
+    padding: 24px;
+    border: 1px solid #10182833;
+    border-radius: 20px;
+    display: flex;
+    gap: 24px;
+}
+
+.cardImage {
+    border-radius: 10px;
+    object-fit: cover;
+    height: 100%;
+    object-position: 80% 50%;
+}
+
+.infoContainer {
+    display: grid;
+}
+
+.name {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.price {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.priceTitle {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0;
+}
+
+
+.cardTitle {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0;
+}
+
+.description {
+    line-height: 1.5;
+    color: #475467;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    margin: 24px 0;
+}
+
+.locationDiv {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.locationTitle {
+    line-height: 1.5;
+    margin: 0;
+}
+
+.starRev {
+    display: flex;
+}
+
+.favoriteBtn {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    height: 24px;
+}
+
+.hart {
+    stroke: black;
+    fill: none;
+    width: 24px;
+    height: 24px;
+}
+
+.favorite {
+    fill: #E44848;
+    stroke: #E44848;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.reviwes {
+    line-height: 1.5;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    margin: 0;
+}
+
+.details {
+    padding: 16px 60px;
+    border-radius: 40px;
+    background-color: #E44848;
+    transition: background-color 0.5s ease;
+    color: #ffffff;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.details:hover {
+    background-color: #D84343;
+}
+
+.detailsList {
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.detailsItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    background-color: #F2F4F7;
+    border-radius: 40px;
+    align-self: baseline;
+}
+
+.label {
+    margin: 0;
+    line-height: 1.25;
+    text-transform: capitalize;
+}

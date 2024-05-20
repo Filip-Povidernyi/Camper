@@ -1,141 +1,124 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setFilters, selectFilters } from '../../redux/slices/vehiclesSlice';
+import { useDispatch } from 'react-redux';
+import icons from '../../images/icons.svg'
+import styleFilter from './style.module.css'
+import { setFilters } from '../../redux/slices/filterSlice';
 
 const FilterForm = () => {
+
     const dispatch = useDispatch();
-    const filters = useSelector(selectFilters);
-    const [localFilters, setLocalFilters] = useState(filters);
+	const handleSearch = (event) => {
+    event.preventDefault();
 
-    useEffect(() => {
-        setLocalFilters(filters);
-    }, [filters]);
+    const formData = new FormData(event.target);
+    const filters = {};
 
-    const handleFilterChange = (e) => {
-        const { name, value, checked, type } = e.target;
-        if (type === 'checkbox') {
-            if (name === 'details') {
-                const details = checked
-                    ? [...localFilters.details, value]
-                    : localFilters.details.filter((item) => item !== value);
-                setLocalFilters({ ...localFilters, details });
+    for (let [name, value] of formData.entries()) {
+        if (name in filters) {
+            if (Array.isArray(filters[name])) {
+                filters[name].push(value);
             } else {
-                setLocalFilters({ ...localFilters, [name]: checked ? value : '' });
+                filters[name] = [filters[name], value];
             }
         } else {
-            setLocalFilters({ ...localFilters, [name]: value });
+            filters[name] = value;
         }
-    };
+    }
 
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            handleSearch();
-        }
-    };
+    dispatch(setFilters(filters));
+};
 
-    const handleSearch = () => {
-        dispatch(setFilters(localFilters));
-    };
+const equipment = [
+	{ icon:  "icon-ac", name: "airConditioner", value: "AC" },
+	{ icon: "icon-transmission", name: "transmission", value: "Automatic" },
+	{ icon: "icon-kitchen", name: "kitchen", value: "Kitchen" },
+	{ icon:  "icon-tv", name: "TV", value: "TV" },
+	{ icon: "icon-wc", name: "shower", value: "Shower/WC" },
+];
+    
+const type = [
+	{ icon: "icon-alcove", name: "form", value: "Van" },
+	{ icon: "icon-alcove", name: "form", value: "Fully Integrated" },
+	{ icon: "icon-alcove", name: "form", value: "Alcove" },
+];
 
+   
     return (
-        <div>
-            <div>
-                <input
-                    type="text"
-                    name="location"
-                    placeholder="Location"
-                    value={localFilters.location}
-                    onChange={handleFilterChange}
-                    onKeyDown={handleKeyDown}
-                />
-                <div>
-                    <label>
-                        <input
-                            type="checkbox"
-                            name="details"
-                            value="kitchen"
-                            checked={localFilters.details.includes('kitchen')}
-                            onChange={handleFilterChange}
-                        />
-                        Kitchen
-                    </label>
-                    <label>
-                        <input
-                            type="checkbox"
-                            name="details"
-                            value="airConditioner"
-                            checked={localFilters.details.includes('airConditioner')}
-                            onChange={handleFilterChange}
-                        />
-                        AC
-                    </label>
-                    <label>
-                        <input
-                            type="checkbox"
-                            name="transmission"
-                            value="automatic"
-                            checked={localFilters.transmission === 'automatic'}
-                            onChange={handleFilterChange}
-                        />
-                        Automatic
-                    </label>
-                    <label>
-                        <input
-                            type="checkbox"
-                            name="details"
-                            value="shower"
-                            checked={localFilters.details.includes('shower')}
-                            onChange={handleFilterChange}
-                        />
-                        Shower
-                    </label>
-                    <label>
-                        <input
-                            type="checkbox"
-                            name="details"
-                            value="TV"
-                            checked={localFilters.details.includes('TV')}
-                            onChange={handleFilterChange}
-                        />
-                        TV
-                    </label>
+        <aside className={styleFilter.container}>
+			<form onSubmit={handleSearch}>
+				<label className={styleFilter.label}>
+			        Location
+			        <input
+				        name="location"
+				        className={styleFilter.input}
+                        placeholder="City"
+			        />
+			        <svg className={styleFilter.mappin} width="18" height="20">
+                      <use href={`${icons}#icon-mappin`}></use>
+                    </svg>
+		        </label>
+				<div>
+                    <h3 className={styleFilter.title}>Filters</h3>
+                    <div>
+			            <h4 className={styleFilter.titleEq}>"Vehicle equipment"</h4>
+			            <hr className={styleFilter.divider} />
+                    </div>
+                    <div className={styleFilter.fieldset}>
+                        <ul className={styleFilter.list}>
+                            {equipment.map((filter) => (
+                                <li className={styleFilter.item}>
+			                        <label className={styleFilter.labelItem}>
+			                        	<svg className="iconEqp" width="32" height="32">
+                                          <use href={`${icons}#${filter.icon}`}></use>
+                                        </svg>
+			                        	<input
+			                        		className="visially-hidden"
+			                        		name={filter.name}
+			                        		type='checkbox'
+			                        		value={filter.value}
+                                            id={filter.name}
+			                        	/>
+			                        	{filter.value}
+			                        </label>
+		                        </li>
+				        
+			                ))}
+		                </ul>
+				    </div>
                 </div>
                 <div>
-                    <label>
-                        <input
-                            type="radio"
-                            name="form"
-                            value="alcove"
-                            checked={localFilters.form === 'alcove'}
-                            onChange={handleFilterChange}
-                        />
-                        Alcove
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="form"
-                            value="van"
-                            checked={localFilters.form === 'van'}
-                            onChange={handleFilterChange}
-                        />
-                        Van
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="form"
-                            value="panelTruck"
-                            checked={localFilters.form === 'panelTruck'}
-                            onChange={handleFilterChange}
-                        />
-                        Panel Truck
-                    </label>
+                    <div>
+			            <h4 className={styleFilter.titleEq}>Vehicle type</h4>
+			            <hr className={styleFilter.divider} />
+                    </div>
+                    <div className={styleFilter.fieldset}>
+                        <ul className={styleFilter.list}>
+                            {type.map((filter) => (
+                                <li className={styleFilter.item}>
+			                        <label className={styleFilter.labelItem}>
+			                        	<svg className="iconType" width="40" height="28">
+                                          <use href={`${icons}#${filter.icon}`}></use>
+                                        </svg>
+			                        	<input
+			                        		className="visially-hidden"
+			                        		name={filter.name}
+			                        		type='radio'
+			                        		value={filter.value}
+                                            id={filter.value}
+			                        	/>
+			                        	{filter.value}
+			                        </label>
+		                        </li>
+				        
+			                ))}
+		                </ul>
+				    </div>
                 </div>
-                <button onClick={handleSearch}>Search</button>
-            </div>
-        </div>
+                <button className={styleFilter.btn} type='submit'>Search</button>
+			</form>
+		</aside>
     );
 };
 
 export default FilterForm;
+
+

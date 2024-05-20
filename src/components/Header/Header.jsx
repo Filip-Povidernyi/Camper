@@ -1,15 +1,28 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import styleHeader from './style.module.css'
+import icons from '../../images/icons.svg'
 
-const Header = () => {
-  return (
-    <header>
-      <nav>
-        <Link to="/">Головна</Link>
-        <Link to="/catalog">Каталог кемперів</Link>
-        <Link to="/favorites">Улюблені</Link>
-      </nav>
-    </header>
-  );
+
+export const Header = () => {
+    return (
+        <section>
+            <div className={styleHeader.container}>
+                <div className={styleHeader.header}>
+                    <div className={styleHeader.logo}>
+                        <svg width="44" height="44">
+                          <use href={`${icons}#icon-logo`}></use>
+                        </svg>
+                        <h1 className={styleHeader.title}>McCamper Rent</h1>
+                    </div>
+                    <nav>
+                        <NavLink to="/">Home</NavLink>
+                        <NavLink to="/catalog">Catalog</NavLink>
+                        <NavLink to="/favorites">Favorites</NavLink>
+                    </nav>
+                </div>
+            </div>
+        </section>
+    )
 };
 
 export default Header;

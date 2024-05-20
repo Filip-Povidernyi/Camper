@@ -4,12 +4,6 @@ import { fetchVehicleData } from 'api/apiFetch';
 
 const initialState = {
     vehicles: [],
-    filters: {
-        location: '',
-        details: [],
-        form: '',
-        transmission: '',
-    },
     loading: false,
     error: null,
 };
@@ -17,11 +11,6 @@ const initialState = {
 const vehiclesSlice = createSlice({
     name: 'vehicle',
     initialState,
-    reducers: {
-        setFilters(state, action) {
-            state.filters = action.payload;
-        },
-    },
     extraReducers: builder => {
         builder
             .addCase(fetchVehicleData.pending, state => {
@@ -39,8 +28,10 @@ const vehiclesSlice = createSlice({
 });
 
 export const { resetPage, incrementPage } = vehiclesSlice.actions;
-export const { setFilters } = vehiclesSlice.actions;
-export const selectFilters = state => state.vehicle.filters;
+export const selectVehicles = state => state.vehicle.vehicles;
 
 export default vehiclesSlice.reducer;
+
+
+
 
