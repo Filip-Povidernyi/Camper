@@ -1,0 +1,26 @@
+.title {
+    font-size: 20px;
+    margin: 0;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.divider {
+    margin: 24px 0 24px 0;
+    color: #1018281a;
+}
+
+.container {
+    margin-top: 44px;
+}
+
+.table {
+    width: 100%;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.33;
+}
+
+.values {
+    text-align: right;
+}

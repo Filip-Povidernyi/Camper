@@ -1,0 +1,106 @@
+.container {
+    min-width: 470px;
+}
+
+.title {
+    font-weight: 500;
+    color: #475467;
+    line-height: 1.5;
+    margin: 32px 0 14px 0;
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    font-weight: 500;
+    color: #10182899;
+    line-height: 1.5;
+    position: relative;
+}
+
+.input {
+    padding: 18px 18px 18px 44px;
+    border: none;
+    background-color: #F7F7F7;
+    border-radius: 10px;
+}
+
+.input:focus .mappin {
+    stroke: #101828;
+}
+
+.mappin {
+    position: absolute;
+    stroke: #10182899;
+    width: 18px;
+    height: 20px;
+    bottom: 18px;
+    left: 18px;
+}
+
+.titleEq {
+    font-size: 20px;
+    margin: 0;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.divider {
+    margin: 24px 0 24px 0;
+    color: #1018281a;
+}
+
+.fieldset {
+    border: none;
+    margin-bottom: 32px;
+    padding: 0;
+}
+
+.list {
+    list-style: none;
+    padding-left: unset;
+    display: flex;
+    column-gap: 10px;
+    row-gap: 8px;
+    flex-wrap: wrap;
+}
+
+.item {
+    flex-basis: calc((100% - 20px)/3);
+}
+
+.labelItem {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 17px 12px;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #10182833;
+    border-radius: 10px;
+    cursor: pointer;
+    box-sizing: border-box;
+    font-weight: 500;
+    line-height: 1.25;
+    text-align: center;
+}
+
+.labelItem:hover,
+.labelItem:has(input:checked) {
+    border-color: #E44848;
+}
+
+.btn {
+    padding: 16px 60px;
+    border-radius: 40px;
+    background-color: #E44848;
+    transition: background-color 0.5s ease;
+    color: #ffffff;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.btn:hover {
+    background-color: #D84343;
+}

@@ -1,0 +1,14 @@
+.home {
+    background-image: url('../../images/dethleffs_range_2019_montage.jpg');
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    padding: 15px 0px;
+}
+
+.headering {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 60px 340px;
+}

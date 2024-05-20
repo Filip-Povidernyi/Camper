@@ -3,13 +3,14 @@ import CamperCardList from "components/CamperCardsList/CamperCardsList";
 import { Loader } from "components/Loader/Loader";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectError, selectLoading, selectVehicles } from "../../redux/selectors/selectors";
+import { filterVehicles, selectError, selectLoading } from "../../redux/selectors/selectors";
 import FilterForm from "components/FilterForm/FilterForm";
+import styleCatalog from './style.module.css';
 
 const Catalog = () => {
 
     const dispatch = useDispatch();
-    const vehicles = useSelector(selectVehicles);
+    const vehicles = useSelector(filterVehicles);
     const loading = useSelector(selectLoading);
     const error = useSelector(selectError);
     const [visibleCount, setVisibleCount] = useState(4);
@@ -27,21 +28,27 @@ const Catalog = () => {
     };
 
     const isLoadMoreVisible = visibleCount < vehicles.length;
+    const titleNoSearch = vehicles.length === 0
 
     return (
-    <>
+    <section className={styleCatalog.container}>
         {loading && <Loader />}
         {error && <div>Something went wrong...</div>}
         <div>
             <FilterForm />
         </div>
-        <div>
-            <CamperCardList data={vehicles.slice(0, visibleCount)} />
-            {isLoadMoreVisible && (
-                <button onClick={loadMore}>Load more</button>
-            )}
+        <div className={styleCatalog.divBtn}>
+            <div className={styleCatalog.listCont}>
+                <CamperCardList data={ vehicles? vehicles.slice(0, visibleCount): []} />
+            </div>
+            <div className={styleCatalog.loadDiv}>
+                {isLoadMoreVisible && (
+                    <button className={styleCatalog.loadMore} onClick={loadMore}>Load more</button>
+                    )}
+                {titleNoSearch && <h2>No searching campers</h2>}
+            </div>    
         </div>
-    </>
+    </section>
     )
 }
 export default Catalog 

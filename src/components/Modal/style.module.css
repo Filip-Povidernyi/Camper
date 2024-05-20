@@ -1,0 +1,130 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1200;
+
+}
+
+.modalContent {
+    max-width: 982px;
+    max-height: 720px;
+    overflow-y: auto;
+    animation-duration: 0.4s;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+}
+
+.modalCloseButton {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.rating {
+    display: inline-flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.imageList {
+    display: flex;
+    justify-content: space-between;
+    max-height: 310px;
+}
+
+.image {
+    border-radius: 10px;
+    object-fit: cover;
+    height: 100%;
+    object-position: 80% 50%;
+}
+
+.name {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0;
+    margin-bottom: 24px;
+}
+
+.star {
+    display: flex;
+}
+
+.descript {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 44px;
+    max-width: 982px;
+}
+
+.description {
+    line-height: 1.5;
+    color: #475467;
+    margin: 24px 0;
+}
+
+.navigation {
+    display: flex;
+    gap: 40px;
+}
+
+.btn {
+    font-size: 20px;
+    border: none;
+    position: relative;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.divider {
+    margin: 0;
+    border-color: #10182833;
+}
+
+.btn:hover:after {
+    content: "";
+    height: 5px;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #E44848;
+    position: absolute;
+    bottom: -27px;
+}
+
+.base {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 44px;
+}
+
+.form {
+    padding: 24px;
+    border: 1px solid #10182833;
+    border-radius: 10px;
+}
