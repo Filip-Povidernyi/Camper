@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import icons from '../../images/icons.svg'
 import styleFilter from './style.module.css'
 import { setFilters } from '../../redux/slices/filterSlice';
+import { nanoid } from 'nanoid';
 
 const FilterForm = () => {
 
@@ -65,7 +66,7 @@ const type = [
                     <div className={styleFilter.fieldset}>
                         <ul className={styleFilter.list}>
                             {equipment.map((filter) => (
-                                <li className={styleFilter.item}>
+                                <li className={styleFilter.item} key={nanoid()}>
 			                        <label className={styleFilter.labelItem}>
 			                        	<svg className="iconEqp" width="32" height="32">
                                           <use href={`${icons}#${filter.icon}`}></use>
@@ -93,7 +94,7 @@ const type = [
                     <div className={styleFilter.fieldset}>
                         <ul className={styleFilter.list}>
                             {type.map((filter) => (
-                                <li className={styleFilter.item}>
+                                <li className={styleFilter.item} key={nanoid()}>
 			                        <label className={styleFilter.labelItem}>
 			                        	<svg className="iconType" width="40" height="28">
                                           <use href={`${icons}#${filter.icon}`}></use>
