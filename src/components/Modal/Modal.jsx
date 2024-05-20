@@ -10,6 +10,8 @@ import { useEffect } from 'react';
 const Modal = ({ data, isOpen, onClose }) => {
 
     const { gallery, rating, reviews, location, name, price, description, adults, transmission, engine, details } = data;
+
+    const [visible, setVisible]
     
     useEffect(() => {
     
