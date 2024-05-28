@@ -19,7 +19,7 @@ export const filterVehicles = createSelector(
             );
         }
 
-        if (filters.ac) {
+        if (filters.airConditioner) {
             filtered = filtered.filter((vehicle) => vehicle.details.airConditioner > 0);
         }
 

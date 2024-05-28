@@ -5,12 +5,14 @@ import { Outlet } from "react-router-dom";
 
 const LayOut = () => {
   return (
-    <main>
+    <>
       <Header />
-      <Suspense fallback={<Loader />}>
-        <Outlet />
-      </Suspense>
-    </main>
+      <main>
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
+      </main>
+    </>
   );
 };
 
