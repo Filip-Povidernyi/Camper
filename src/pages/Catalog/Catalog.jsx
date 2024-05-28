@@ -31,24 +31,28 @@ const Catalog = () => {
     const titleNoSearch = vehicles.length === 0
 
     return (
-    <section className={styleCatalog.container}>
-        {loading && <Loader />}
-        {error && <div>Something went wrong...</div>}
-        <div>
-            <FilterForm />
-        </div>
-        <div className={styleCatalog.divBtn}>
-            <div className={styleCatalog.listCont}>
-                <CamperCardList data={ vehicles? vehicles.slice(0, visibleCount): []} />
+        <section className={styleCatalog.container}>
+            <div>
+                {loading && <Loader />}
+                {error && <div>Something went wrong...</div>}
             </div>
-            <div className={styleCatalog.loadDiv}>
-                {isLoadMoreVisible && (
-                    <button className={styleCatalog.loadMore} onClick={loadMore}>Load more</button>
+            {!loading && !error && <div className={styleCatalog.catalogDiv}>
+            <div>
+                <FilterForm />
+            </div>
+            <div className={styleCatalog.divBtn}>
+                <div className={styleCatalog.listCont}>
+                    <CamperCardList data={vehicles ? vehicles.slice(0, visibleCount) : []} />
+                </div>
+                <div className={styleCatalog.loadDiv}>
+                    {isLoadMoreVisible && (
+                        <button className={styleCatalog.loadMore} onClick={loadMore}>Load more</button>
                     )}
-                {titleNoSearch && <h2>No searching campers</h2>}
-            </div>    
-        </div>
-    </section>
+                    {titleNoSearch && <h2>No searching campers</h2>}
+                </div>
+            </div>
+        </div>}
+        </section>
     )
 }
 export default Catalog 
